@@ -10,11 +10,9 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll_service", "root", "Sravani@6086");
             System.out.println("Connection done.....");
             Statement statement = connection.createStatement();
-            statement.execute("UPDATE employee_payroll SET BasicPay=3000000.00 WHERE id=1");
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM employee_payroll");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM employee_payroll WHERE start BETWEEN cast('2019-01-01' as DATE) and DATE (NOW())");
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name") +
-                        " " + resultSet.getDouble("BasicPay"));
+                System.out.println(resultSet.getString("name") + " " + resultSet.getDate("start"));
             }
         } catch (Exception e) {
             e.printStackTrace();

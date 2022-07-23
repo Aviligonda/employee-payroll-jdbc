@@ -10,9 +10,9 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll_service", "root", "Sravani@6086");
             System.out.println("Connection done.....");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM employee_payroll WHERE start BETWEEN cast('2019-01-01' as DATE) and DATE (NOW())");
+            ResultSet resultSet = statement.executeQuery("SELECT SUM(BasicPay) FROM employee_payroll WHERE gender = 'M' GROUP BY gender ");
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("name") + " " + resultSet.getDate("start"));
+                System.out.println("Sum of the all Basic salary " + resultSet.getDouble("SUM(BasicPay)"));
             }
         } catch (Exception e) {
             e.printStackTrace();

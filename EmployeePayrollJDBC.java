@@ -10,7 +10,7 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll_service", "root", "Sravani@6086");
             System.out.println("Connection done.....");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO employee_payroll VALUES (5,'John','8919584625','BKS','Sales','M',100000.00,20000.00,80000.00,92000.00,8000.00,'2021-03-01')");
+            statement.executeUpdate("DELETE FROM employee_payroll WHERE id=3");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employee_payroll");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1)
